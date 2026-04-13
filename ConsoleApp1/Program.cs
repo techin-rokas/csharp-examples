@@ -1,8 +1,7 @@
 // ============================================================
-//  C# ATSISKAITYMO PAVYZDINIS PROJEKTAS
-//  Temos: Įvadas, Ciklai/Masyvai/Metodai,
-//         Tekstinės eilutės/Collections,
-//         Queue/Stack/Dictionary/HashSet/Failai
+//  Topics: Introduction, Loops/Arrays/Methods,
+//          Strings/Collections,
+//          Queue/Stack/Dictionary/HashSet/Files
 // ============================================================
 
 using System;
@@ -10,116 +9,116 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-class Program
+class CSharpReference
 {
     // ============================================================
-    // PROGRAMA PRASIDEDA ČIA
+    // PROGRAM STARTS HERE
     // ============================================================
     static void Main(string[] args)
     {
         Console.WriteLine("====================================");
-        Console.WriteLine("   C# ATSISKAITYMO PAVYZDYS");
+        Console.WriteLine("   C# REFERENCE PROJECT");
         Console.WriteLine("====================================\n");
 
-        // Kiekviena tema iškviečiama atskirame metode
-        Demo1_Ivadas();
-        Demo2_CiklaiMasyvaiMetodai();
-        Demo3_StringCollections();
-        Demo4_QueueStackDictHashSetFailai();
+        // Each topic is called in its own method
+        Demo1_Introduction();
+        Demo2_LoopsArraysMethods();
+        Demo3_StringsCollections();
+        Demo4_QueueStackDictHashSetFiles();
 
-        Console.WriteLine("\n✅ Programa baigė darbą!");
+        Console.WriteLine("\n✅ Program finished!");
     }
 
 
     // ============================================================
-    // TEMA #1 — ĮVADAS Į C#
+    // TOPIC #1 — INTRODUCTION TO C#
     // ============================================================
-    static void Demo1_Ivadas()
+    static void Demo1_Introduction()
     {
-        Console.WriteLine("\n--- TEMA #1: ĮVADAS ---");
+        Console.WriteLine("\n--- TOPIC #1: INTRODUCTION ---");
 
-        // --- Duomenų tipai (value types) ---
-        int sveikas = 42;
-        double slankus = 3.14;
-        bool loginė = true;
-        char simbolis = 'A';
-        float mazasSlank = 1.5f;
-        long didelisSk = 9_000_000_000L; // _ padeda skaitomumui
+        // --- Data types (value types) ---
+        int wholeNumber = 42;
+        double decimal1 = 3.14;
+        bool flag = true;
+        char letter = 'A';
+        float smallFloat = 1.5f;
+        long bigNumber = 9_000_000_000L; // _ improves readability
 
-        // --- Reference type ---
-        string tekstas = "Labas C#";   // null arba eilutė
-        object obj = sveikas;      // bet koks tipas
+        // --- Reference types ---
+        string text = "Hello C#";   // can be null or a string
+        object obj = wholeNumber;  // can hold any type
 
-        // --- var — tipas nustatomas automatiškai (bet yra statinis!) ---
-        var auto = 100;           // kompiliatorius žino: int
-        var autoTekstas = "Hi";   // kompiliatorius žino: string
+        // --- var — type is inferred automatically (but still static!) ---
+        var autoInt = 100;    // compiler knows: int
+        var autoString = "Hi";  // compiler knows: string
 
-        // --- const ir readonly ---
-        const double PI = 3.14159;  // niekada nesikeičia, žinoma kompiliacijos metu
-        // readonly galima priskirti tik deklaracijoje arba konstruktoriuje (klasės lygmenyje)
+        // --- const and readonly ---
+        const double PI = 3.14159;  // never changes, known at compile time
+        // readonly can only be assigned in the declaration or constructor (class level)
 
-        Console.WriteLine($"int={sveikas}, double={slankus}, bool={loginė}, char={simbolis}");
-        Console.WriteLine($"var auto={auto}, var autoTekstas={autoTekstas}, PI={PI}");
+        Console.WriteLine($"int={wholeNumber}, double={decimal1}, bool={flag}, char={letter}");
+        Console.WriteLine($"var autoInt={autoInt}, var autoString={autoString}, PI={PI}");
 
-        // --- Implicit (automatinė) konversija — saugus platinimas ---
+        // --- Implicit conversion — safe widening ---
         int x = 10;
-        double platinimas = x;   // int → double, nėra duomenų praradimo
-        Console.WriteLine($"Implicit: int {x} → double {platinimas}");
+        double widened = x;   // int → double, no data loss
+        Console.WriteLine($"Implicit: int {x} → double {widened}");
 
-        // --- Explicit (priverstinė) konversija — gali prarasti duomenis ---
-        double tikslus = 9.99;
-        int apkarpytas = (int)tikslus;  // dešimtainė dalis pametama!
-        Console.WriteLine($"Explicit: double {tikslus} → int {apkarpytas}");
+        // --- Explicit conversion (cast) — may lose data ---
+        double precise = 9.99;
+        int truncated = (int)precise;  // decimal part is cut off!
+        Console.WriteLine($"Explicit: double {precise} → int {truncated}");
 
-        // --- Aritmetiniai operatoriai ---
+        // --- Arithmetic operators ---
         int a = 10, b = 3;
         Console.WriteLine($"10+3={a + b}, 10-3={a - b}, 10*3={a * b}, 10/3={a / b}, 10%3={a % b}");
-        // ⚠ int/int = int: 10/3 = 3, ne 3.33!
+        // ⚠ int/int = int: 10/3 = 3, NOT 3.33!
 
-        // --- Lyginimo ir loginiai operatoriai ---
+        // --- Comparison and logical operators ---
         Console.WriteLine($"10>3: {a > b}, 10==3: {a == b}, true&&false: {true && false}, !true: {!true}");
 
-        // --- Sąlyga: if / else if / else ---
+        // --- Conditions: if / else if / else ---
         int temp = 20;
         if (temp > 30)
-            Console.WriteLine("Karšta");
+            Console.WriteLine("Hot");
         else if (temp > 15)
-            Console.WriteLine($"Malonu ({temp}°C)");  // šis bus išspausdintas
+            Console.WriteLine($"Nice ({temp}°C)");  // this one prints
         else
-            Console.WriteLine("Šalta");
+            Console.WriteLine("Cold");
 
-        // --- Ternary operatorius (trumpa if/else) ---
-        string rezultatas = (temp > 0) ? "Teigiama" : "Neigiama";
-        Console.WriteLine($"Ternary: {rezultatas}");
+        // --- Ternary operator (short if/else) ---
+        string result = (temp > 0) ? "Positive" : "Negative";
+        Console.WriteLine($"Ternary: {result}");
 
-        // --- Switch sakinys ---
-        int diena = 3;
-        switch (diena)
+        // --- Switch statement ---
+        int day = 3;
+        switch (day)
         {
-            case 1: Console.WriteLine("Pirmadienis"); break;
-            case 2: Console.WriteLine("Antradienis"); break;
-            case 3: Console.WriteLine("Trečiadienis"); break;  // šis
-            default: Console.WriteLine("Kita diena"); break;
+            case 1: Console.WriteLine("Monday"); break;
+            case 2: Console.WriteLine("Tuesday"); break;
+            case 3: Console.WriteLine("Wednesday"); break;  // this one
+            default: Console.WriteLine("Other day"); break;
         }
     }
 
 
     // ============================================================
-    // TEMA #2 — CIKLAI, MASYVAI, METODAI
+    // TOPIC #2 — LOOPS, ARRAYS, METHODS
     // ============================================================
-    static void Demo2_CiklaiMasyvaiMetodai()
+    static void Demo2_LoopsArraysMethods()
     {
-        Console.WriteLine("\n--- TEMA #2: CIKLAI, MASYVAI, METODAI ---");
+        Console.WriteLine("\n--- TOPIC #2: LOOPS, ARRAYS, METHODS ---");
 
-        // ---- CIKLAI ----
+        // ---- LOOPS ----
 
-        // for — kai žinome iteracijų skaičių
+        // for — when we know the number of iterations
         Console.Write("for: ");
         for (int i = 0; i < 5; i++)
             Console.Write(i + " ");   // 0 1 2 3 4
         Console.WriteLine();
 
-        // while — kol sąlyga teisinga
+        // while — runs while the condition is true
         Console.Write("while: ");
         int n = 0;
         while (n < 5)
@@ -129,7 +128,7 @@ class Program
         }
         Console.WriteLine();
 
-        // do-while — vykdomas BENT VIENĄ KARTĄ (sąlyga tikrinama po)
+        // do-while — runs AT LEAST ONCE (condition checked after body)
         Console.Write("do-while: ");
         int m = 0;
         do
@@ -139,15 +138,15 @@ class Program
         } while (m < 5);
         Console.WriteLine();
 
-        // foreach — iteravimas per kolekciją
-        int[] masyvElem = { 10, 20, 30, 40 };
+        // foreach — iterates over a collection
+        int[] arrayElems = { 10, 20, 30, 40 };
         Console.Write("foreach: ");
-        foreach (int el in masyvElem)
+        foreach (int el in arrayElems)
             Console.Write(el + " ");
         Console.WriteLine();
 
-        // break — nutraukia ciklą
-        Console.Write("break ties 3: ");
+        // break — exits the loop immediately
+        Console.Write("break at 3: ");
         for (int i = 0; i < 10; i++)
         {
             if (i == 3) break;
@@ -155,174 +154,174 @@ class Program
         }
         Console.WriteLine();
 
-        // continue — praleidžia šią iteraciją
-        Console.Write("continue lyginiai: ");
+        // continue — skips the current iteration
+        Console.Write("continue (even only): ");
         for (int i = 0; i < 6; i++)
         {
-            if (i % 2 != 0) continue;  // nelyginiai praleisti
+            if (i % 2 != 0) continue;  // odd numbers are skipped
             Console.Write(i + " ");    // 0 2 4
         }
         Console.WriteLine();
 
-        // ---- MASYVAI ----
+        // ---- ARRAYS ----
 
-        // Paprastas masyvas — fiksuotas dydis
-        int[] skaičiai = new int[5];          // visi 0 pagal nutylėjimą
-        int[] inicializuotas = { 1, 2, 3, 4, 5 };
+        // Simple array — fixed size
+        int[] empty = new int[5];           // all 0 by default
+        int[] initialized = { 1, 2, 3, 4, 5 };
 
-        Console.WriteLine($"Masyvo ilgis: {inicializuotas.Length}");
-        Console.WriteLine($"Elementas [2]: {inicializuotas[2]}");  // 3
+        Console.WriteLine($"Array length: {initialized.Length}");
+        Console.WriteLine($"Element [2]: {initialized[2]}");  // 3
 
-        // Iteravimas per masyvą su indeksu
-        Console.Write("Masyvas: ");
-        for (int i = 0; i < inicializuotas.Length; i++)
-            Console.Write(inicializuotas[i] + " ");
+        // Iterating with index
+        Console.Write("Array: ");
+        for (int i = 0; i < initialized.Length; i++)
+            Console.Write(initialized[i] + " ");
         Console.WriteLine();
 
-        // Dvimatis masyvas
-        int[,] matrica = new int[2, 3];
-        matrica[0, 0] = 1; matrica[0, 1] = 2; matrica[0, 2] = 3;
-        matrica[1, 0] = 4; matrica[1, 1] = 5; matrica[1, 2] = 6;
+        // 2D array
+        int[,] matrix = new int[2, 3];
+        matrix[0, 0] = 1; matrix[0, 1] = 2; matrix[0, 2] = 3;
+        matrix[1, 0] = 4; matrix[1, 1] = 5; matrix[1, 2] = 6;
 
-        Console.WriteLine("Matrica:");
+        Console.WriteLine("Matrix:");
         for (int i = 0; i < 2; i++)
         {
             for (int j = 0; j < 3; j++)
-                Console.Write(matrica[i, j] + "\t");
+                Console.Write(matrix[i, j] + "\t");
             Console.WriteLine();
         }
 
-        // ---- METODŲ KVIETIMAI ----
+        // ---- METHOD CALLS ----
 
-        // Paprastas metodas
-        int suma = Sudeti(5, 3);
-        Console.WriteLine($"Sudeti(5,3) = {suma}");
+        // Simple method
+        int sum = Add(5, 3);
+        Console.WriteLine($"Add(5,3) = {sum}");
 
-        // Default parametras
-        Sveikinti();           // naudoja numatytąjį "Svečias"
-        Sveikinti("Jonas");    // naudoja "Jonas"
+        // Default parameter
+        Greet();          // uses default "Guest"
+        Greet("Alice");   // uses "Alice"
 
-        // ref — keičia originalų kintamąjį (turi būti inicializuotas)
-        int refSk = 10;
-        PadaugintIš2(ref refSk);
-        Console.WriteLine($"ref po PadaugintIš2: {refSk}");  // 20
+        // ref — modifies the original variable (must be initialized first)
+        int refNum = 10;
+        MultiplyBy2(ref refNum);
+        Console.WriteLine($"ref after MultiplyBy2: {refNum}");  // 20
 
-        // out — metodas priskiria reikšmę (nereikia inicializuoti)
-        GautiDuomenis(out int outRez);
-        Console.WriteLine($"out GautiDuomenis: {outRez}");   // 99
+        // out — method assigns the value (no need to initialize before)
+        GetData(out int outResult);
+        Console.WriteLine($"out GetData: {outResult}");         // 99
 
-        // params — kintamas kiekis argumentų
-        Console.WriteLine($"params Suma(1,2,3,4): {SumaParams(1, 2, 3, 4)}");
+        // params — accepts a variable number of arguments
+        Console.WriteLine($"params Sum(1,2,3,4): {SumParams(1, 2, 3, 4)}");
 
-        // Overloading — tas pats pavadinimas, skirtingi parametrai
-        Console.WriteLine($"Overload int: {Skaiciuoti(5, 3)}");
-        Console.WriteLine($"Overload double: {Skaiciuoti(5.5, 3.3)}");
+        // Overloading — same name, different parameters
+        Console.WriteLine($"Overload int: {Calculate(5, 3)}");
+        Console.WriteLine($"Overload double: {Calculate(5.5, 3.3)}");
 
-        // Rekursija — faktorialas
-        Console.WriteLine($"Faktorialas(5) = {Faktorialas(5)}");  // 120
+        // Recursion — factorial
+        Console.WriteLine($"Factorial(5) = {Factorial(5)}");  // 120
     }
 
-    // --- Metodų apibrėžimai (naudojami Demo2) ---
+    // --- Method definitions (used by Demo2) ---
 
-    // Grąžina dviejų skaičių sumą
-    static int Sudeti(int a, int b)
+    // Returns the sum of two numbers
+    static int Add(int a, int b)
     {
         return a + b;
     }
 
-    // Default parametras: jei nenurodytas — naudojamas "Svečias"
-    static void Sveikinti(string vardas = "Svečias")
+    // Default parameter: if not provided, uses "Guest"
+    static void Greet(string name = "Guest")
     {
-        Console.WriteLine($"Sveiki, {vardas}!");
+        Console.WriteLine($"Hello, {name}!");
     }
 
-    // ref — kintamasis perduodamas kaip nuoroda, keičiamas originale
-    static void PadaugintIš2(ref int skaičius)
+    // ref — variable is passed by reference, original is modified
+    static void MultiplyBy2(ref int number)
     {
-        skaičius *= 2;
+        number *= 2;
     }
 
-    // out — metodas PRIVALO priskirti reikšmę
-    static void GautiDuomenis(out int rezultatas)
+    // out — method MUST assign a value before returning
+    static void GetData(out int result)
     {
-        rezultatas = 99;  // privaloma priskirti
+        result = 99;  // mandatory assignment
     }
 
-    // params — leidžia perduoti bet kiek argumentų
-    static int SumaParams(params int[] skaičiai)
+    // params — allows passing any number of arguments
+    static int SumParams(params int[] numbers)
     {
-        int suma = 0;
-        foreach (int s in skaičiai)
-            suma += s;
-        return suma;
+        int total = 0;
+        foreach (int num in numbers)
+            total += num;
+        return total;
     }
 
-    // Overloading — int versija
-    static int Skaiciuoti(int a, int b) => a + b;
+    // Overloading — int version
+    static int Calculate(int a, int b) => a + b;
 
-    // Overloading — double versija (tas pats pavadinimas, kitas tipas)
-    static double Skaiciuoti(double a, double b) => a + b;
+    // Overloading — double version (same name, different type)
+    static double Calculate(double a, double b) => a + b;
 
-    // Rekursija — kviečia pats save, bazinis atvejis: n <= 1
-    static long Faktorialas(int n)
+    // Recursion — calls itself; base case: n <= 1 stops the recursion
+    static long Factorial(int n)
     {
-        if (n <= 1) return 1;        // BAZINIS ATVEJIS — sustabdo rekursiją
-        return n * Faktorialas(n - 1); // rekursinis kvietimas
+        if (n <= 1) return 1;         // BASE CASE — stops recursion
+        return n * Factorial(n - 1);  // recursive call
     }
 
 
     // ============================================================
-    // TEMA #3 — TEKSTINĖS EILUTĖS IR COLLECTIONS (List)
+    // TOPIC #3 — STRINGS AND COLLECTIONS (List)
     // ============================================================
-    static void Demo3_StringCollections()
+    static void Demo3_StringsCollections()
     {
-        Console.WriteLine("\n--- TEMA #3: TEKSTINĖS EILUTĖS IR COLLECTIONS ---");
+        Console.WriteLine("\n--- TOPIC #3: STRINGS AND COLLECTIONS ---");
 
-        // ---- STRING METODAI ----
+        // ---- STRING METHODS ----
 
-        string s = "  Labas, Pasauli!  ";
+        string s = "  Hello, World!  ";
 
-        Console.WriteLine($"Originalas:    [{s}]");
-        Console.WriteLine($"Trim():        [{s.Trim()}]");          // pašalina kraštų tarpus
-        Console.WriteLine($"ToUpper():     [{s.Trim().ToUpper()}]");
-        Console.WriteLine($"ToLower():     [{s.Trim().ToLower()}]");
-        Console.WriteLine($"Length:        {s.Length}");
-        Console.WriteLine($"Contains('Labas'): {s.Contains("Labas")}");    // true
-        Console.WriteLine($"StartsWith('  L'): {s.StartsWith("  L")}");    // true
-        Console.WriteLine($"IndexOf('Pasauli'): {s.IndexOf("Pasauli")}");  // pozicija
+        Console.WriteLine($"Original:       [{s}]");
+        Console.WriteLine($"Trim():         [{s.Trim()}]");           // removes leading/trailing spaces
+        Console.WriteLine($"ToUpper():      [{s.Trim().ToUpper()}]");
+        Console.WriteLine($"ToLower():      [{s.Trim().ToLower()}]");
+        Console.WriteLine($"Length:         {s.Length}");
+        Console.WriteLine($"Contains('Hello'): {s.Contains("Hello")}");       // true
+        Console.WriteLine($"StartsWith('  H'): {s.StartsWith("  H")}");       // true
+        Console.WriteLine($"IndexOf('World'):   {s.IndexOf("World")}");        // position
 
-        string pakeistas = s.Trim().Replace("Labas", "Sveikas");
-        Console.WriteLine($"Replace:       [{pakeistas}]");
+        string replaced = s.Trim().Replace("Hello", "Hi");
+        Console.WriteLine($"Replace:        [{replaced}]");
 
-        // Substring — iškirpti dalį
-        string sub = s.Trim().Substring(0, 5);  // nuo 0, ilgis 5
-        Console.WriteLine($"Substring(0,5): [{sub}]");  // "Labas"
+        // Substring — extract a portion of the string
+        string sub = s.Trim().Substring(0, 5);  // start at 0, length 5
+        Console.WriteLine($"Substring(0,5): [{sub}]");  // "Hello"
 
-        // Split — dalinti į masyvą
-        string csv = "Jonas,Petras,Ona";
-        string[] vardai = csv.Split(',');
+        // Split — divide into an array
+        string csv = "Alice,Bob,Carol";
+        string[] names = csv.Split(',');
         Console.Write("Split: ");
-        foreach (string v in vardai)
-            Console.Write($"[{v}] ");
+        foreach (string name in names)
+            Console.Write($"[{name}] ");
         Console.WriteLine();
 
-        // IsNullOrEmpty / IsNullOrWhiteSpace — null tikrinimas
-        string? galNullStr = null;
-        Console.WriteLine($"IsNullOrEmpty(null): {string.IsNullOrEmpty(galNullStr)}");      // true
+        // IsNullOrEmpty / IsNullOrWhiteSpace — null-safety checks
+        string? maybeNull = null;
+        Console.WriteLine($"IsNullOrEmpty(null):     {string.IsNullOrEmpty(maybeNull)}");   // true
         Console.WriteLine($"IsNullOrWhiteSpace(' '): {string.IsNullOrWhiteSpace("  ")}");   // true
 
-        // String interpoliation ir formatavimas
-        string vardas = "Marija";
-        int amžius = 25;
-        Console.WriteLine($"Interpoliation: Sveika, {vardas}! Tau {amžius} metai.");
-        Console.WriteLine(string.Format("Format: Sveika, {0}! Tau {1} metai.", vardas, amžius));
+        // String interpolation and formatting
+        string firstName = "Maria";
+        int age = 25;
+        Console.WriteLine($"Interpolation: Hello, {firstName}! You are {age} years old.");
+        Console.WriteLine(string.Format("Format: Hello, {0}! You are {1} years old.", firstName, age));
 
-        // ⚠ String yra IMMUTABLE — kiekviena operacija sukuria NAUJĄ objektą
+        // ⚠ String is IMMUTABLE — every operation creates a NEW object
         string orig = "abc";
-        string nauja = orig.ToUpper();  // orig lieka "abc"
-        Console.WriteLine($"Immutable: orig={orig}, nauja={nauja}");
+        string upper = orig.ToUpper();  // orig is still "abc"
+        Console.WriteLine($"Immutable: orig={orig}, upper={upper}");
 
-        // StringBuilder — efektyviam jungimui cikle
+        // StringBuilder — efficient for many concatenation operations in a loop
         Console.Write("StringBuilder: ");
         var sb = new StringBuilder();
         for (int i = 1; i <= 5; i++)
@@ -335,317 +334,317 @@ class Program
         // ---- LIST<T> ----
         Console.WriteLine("\n-- List<T> --");
 
-        var sarasas = new List<string>();
-        sarasas.Add("Obuolys");
-        sarasas.Add("Bananas");
-        sarasas.Add("Citrina");
-        Console.WriteLine($"Count po Add: {sarasas.Count}");
+        var list = new List<string>();
+        list.Add("Apple");
+        list.Add("Banana");
+        list.Add("Lemon");
+        Console.WriteLine($"Count after Add: {list.Count}");
 
-        // Prieiga per indeksą
-        Console.WriteLine($"sarasas[1] = {sarasas[1]}");  // "Bananas"
+        // Access by index
+        Console.WriteLine($"list[1] = {list[1]}");  // "Banana"
 
         // Contains
-        Console.WriteLine($"Contains('Obuolys'): {sarasas.Contains("Obuolys")}");
+        Console.WriteLine($"Contains('Apple'): {list.Contains("Apple")}");
 
         // Remove
-        sarasas.Remove("Bananas");
-        Console.WriteLine($"Count po Remove: {sarasas.Count}");
+        list.Remove("Banana");
+        Console.WriteLine($"Count after Remove: {list.Count}");
 
         // Sort
-        sarasas.Add("Avokadas");
-        sarasas.Sort();
-        Console.Write("Po Sort: ");
-        foreach (string v2 in sarasas)
-            Console.Write(v2 + " ");
+        list.Add("Avocado");
+        list.Sort();
+        Console.Write("After Sort: ");
+        foreach (string item in list)
+            Console.Write(item + " ");
         Console.WriteLine();
 
-        // ⚠ Svarbu tikrinti prieš prieigą
-        if (sarasas.Count > 0)
-            Console.WriteLine($"Pirmas elementas: {sarasas[0]}");
+        // ⚠ Always check Count > 0 before accessing by index
+        if (list.Count > 0)
+            Console.WriteLine($"First element: {list[0]}");
     }
 
 
     // ============================================================
-    // TEMA #4 — QUEUE, STACK, DICTIONARY, HASHSET, FAILAI
+    // TOPIC #4 — QUEUE, STACK, DICTIONARY, HASHSET, FILES
     // ============================================================
-    static void Demo4_QueueStackDictHashSetFailai()
+    static void Demo4_QueueStackDictHashSetFiles()
     {
-        Console.WriteLine("\n--- TEMA #4: QUEUE, STACK, DICTIONARY, HASHSET, FAILAI ---");
+        Console.WriteLine("\n--- TOPIC #4: QUEUE, STACK, DICTIONARY, HASHSET, FILES ---");
 
         DemoQueue();
         DemoStack();
         DemoDictionary();
         DemoHashSet();
-        DemoFailai();
+        DemoFiles();
     }
 
     // ---- QUEUE<T> — FIFO (First In, First Out) ----
-    // Analogija: eilė prie kasos — pirmas atėjęs, pirmas aptarnaujamas
+    // Analogy: checkout line — first person in is first person out
     static void DemoQueue()
     {
         Console.WriteLine("\n-- Queue (FIFO) --");
 
-        var eilė = new Queue<string>();
+        var queue = new Queue<string>();
 
-        // Enqueue — deda į GALĄ
-        eilė.Enqueue("Pirmas");
-        eilė.Enqueue("Antras");
-        eilė.Enqueue("Trečias");
-        Console.WriteLine($"Count: {eilė.Count}");
+        // Enqueue — adds to the BACK
+        queue.Enqueue("First");
+        queue.Enqueue("Second");
+        queue.Enqueue("Third");
+        Console.WriteLine($"Count: {queue.Count}");
 
-        // Peek — žiūri į PRIEKĮ, bet neišima
-        if (eilė.Count > 0)
-            Console.WriteLine($"Peek (neiširia): {eilė.Peek()}");  // "Pirmas"
+        // Peek — looks at the FRONT without removing
+        if (queue.Count > 0)
+            Console.WriteLine($"Peek (no remove): {queue.Peek()}");  // "First"
 
-        // Dequeue — išima iš PRIEKIO
-        if (eilė.Count > 0)
-            Console.WriteLine($"Dequeue: {eilė.Dequeue()}");  // "Pirmas"
+        // Dequeue — removes from the FRONT
+        if (queue.Count > 0)
+            Console.WriteLine($"Dequeue: {queue.Dequeue()}");  // "First"
 
-        // TryDequeue — saugus išėmimas (nemetamas exception)
-        if (eilė.TryDequeue(out string? išimtas))
-            Console.WriteLine($"TryDequeue: {išimtas}");  // "Antras"
+        // TryDequeue — safe removal (no exception thrown if empty)
+        if (queue.TryDequeue(out string? removed))
+            Console.WriteLine($"TryDequeue: {removed}");  // "Second"
 
-        // ⚠ Jei eilė tuščia ir bandome Dequeue() — InvalidOperationException!
-        Console.WriteLine($"Liko eilėje: {eilė.Count}");
+        // ⚠ Calling Dequeue() on an empty queue throws InvalidOperationException!
+        Console.WriteLine($"Remaining in queue: {queue.Count}");
 
-        // Iteravimas
-        Console.Write("Queue turinys: ");
-        foreach (string el in eilė)
+        // Iteration
+        Console.Write("Queue contents: ");
+        foreach (string el in queue)
             Console.Write(el + " ");
         Console.WriteLine();
     }
 
     // ---- STACK<T> — LIFO (Last In, First Out) ----
-    // Analogija: knygų krūva — paskutinė padėta, pirmoji paimama
+    // Analogy: stack of plates — last placed is first taken
     static void DemoStack()
     {
         Console.WriteLine("\n-- Stack (LIFO) --");
 
-        var krūva = new Stack<int>();
+        var stack = new Stack<int>();
 
-        // Push — deda ant VIRŠAUS
-        krūva.Push(10);
-        krūva.Push(20);
-        krūva.Push(30);
-        Console.WriteLine($"Count: {krūva.Count}");
+        // Push — adds to the TOP
+        stack.Push(10);
+        stack.Push(20);
+        stack.Push(30);
+        Console.WriteLine($"Count: {stack.Count}");
 
-        // Peek — žiūri į VIRŠŲ, bet neišima
-        if (krūva.Count > 0)
-            Console.WriteLine($"Peek (neiširia): {krūva.Peek()}");  // 30
+        // Peek — looks at the TOP without removing
+        if (stack.Count > 0)
+            Console.WriteLine($"Peek (no remove): {stack.Peek()}");  // 30
 
-        // Pop — išima nuo VIRŠAUS
-        if (krūva.Count > 0)
-            Console.WriteLine($"Pop: {krūva.Pop()}");  // 30
+        // Pop — removes from the TOP
+        if (stack.Count > 0)
+            Console.WriteLine($"Pop: {stack.Pop()}");  // 30
 
-        // TryPop — saugus išėmimas
-        if (krūva.TryPop(out int išimtasInt))
-            Console.WriteLine($"TryPop: {išimtasInt}");  // 20
+        // TryPop — safe removal
+        if (stack.TryPop(out int poppedVal))
+            Console.WriteLine($"TryPop: {poppedVal}");  // 20
 
-        // ⚠ Jei krūva tuščia ir bandome Pop() — InvalidOperationException!
-        Console.WriteLine($"Liko krūvoje: {krūva.Count}");
+        // ⚠ Calling Pop() on an empty stack throws InvalidOperationException!
+        Console.WriteLine($"Remaining in stack: {stack.Count}");
 
         // Contains
-        Console.WriteLine($"Contains(10): {krūva.Contains(10)}");
+        Console.WriteLine($"Contains(10): {stack.Contains(10)}");
 
-        // Iteravimas
-        Console.Write("Stack turinys: ");
-        foreach (int el in krūva)
+        // Iteration
+        Console.Write("Stack contents: ");
+        foreach (int el in stack)
             Console.Write(el + " ");
         Console.WriteLine();
     }
 
-    // ---- DICTIONARY<TKey, TValue> — raktų-reikšmių poros ----
-    // Raktai UNIKALŪS, paieška greita (O(1))
+    // ---- DICTIONARY<TKey, TValue> — key-value pairs ----
+    // Keys are UNIQUE, lookup is fast (O(1))
     static void DemoDictionary()
     {
         Console.WriteLine("\n-- Dictionary<K,V> --");
 
-        var žodynas = new Dictionary<string, int>();
+        var dict = new Dictionary<string, int>();
 
-        // Add — prideda (klaida jei raktas jau yra)
-        žodynas.Add("Jonas", 25);
-        žodynas.Add("Petras", 30);
-        žodynas["Ona"] = 22;    // taip pat veikia; jei yra — atnaujina
+        // Add — throws exception if key already exists
+        dict.Add("Alice", 25);
+        dict.Add("Bob", 30);
+        dict["Carol"] = 22;    // also works; updates if key exists
 
-        Console.WriteLine($"Count: {žodynas.Count}");
+        Console.WriteLine($"Count: {dict.Count}");
 
-        // Prieiga per raktą
-        Console.WriteLine($"žodynas['Jonas'] = {žodynas["Jonas"]}");
+        // Access by key
+        Console.WriteLine($"dict['Alice'] = {dict["Alice"]}");
 
-        // ContainsKey — tikrina ar raktas egzistuoja
-        Console.WriteLine($"ContainsKey('Petras'): {žodynas.ContainsKey("Petras")}");
-        Console.WriteLine($"ContainsValue(30): {žodynas.ContainsValue(30)}");
+        // ContainsKey — checks if a key exists
+        Console.WriteLine($"ContainsKey('Bob'):  {dict.ContainsKey("Bob")}");
+        Console.WriteLine($"ContainsValue(30):   {dict.ContainsValue(30)}");
 
-        // ⚠ Saugus gavimas su TryGetValue — vengia KeyNotFoundException
-        if (žodynas.TryGetValue("Jonas", out int jonoAmžius))
-            Console.WriteLine($"TryGetValue Jonas: {jonoAmžius}");
+        // ⚠ Safe access with TryGetValue — avoids KeyNotFoundException
+        if (dict.TryGetValue("Alice", out int aliceAge))
+            Console.WriteLine($"TryGetValue Alice: {aliceAge}");
         else
-            Console.WriteLine("Jonas nerastas");
+            Console.WriteLine("Alice not found");
 
-        // Iteravimas per visas poras
-        Console.WriteLine("Visi įrašai:");
-        foreach (KeyValuePair<string, int> pora in žodynas)
-            Console.WriteLine($"  {pora.Key} → {pora.Value}");
+        // Iterating over all pairs
+        Console.WriteLine("All entries:");
+        foreach (KeyValuePair<string, int> pair in dict)
+            Console.WriteLine($"  {pair.Key} → {pair.Value}");
 
-        // Tik raktai / tik reikšmės
-        Console.Write("Raktai: ");
-        foreach (string r in žodynas.Keys)
-            Console.Write(r + " ");
+        // Keys only / Values only
+        Console.Write("Keys: ");
+        foreach (string key in dict.Keys)
+            Console.Write(key + " ");
         Console.WriteLine();
 
-        // Remove — pašalina pagal raktą
-        žodynas.Remove("Petras");
-        Console.WriteLine($"Po Remove: {žodynas.Count}");
+        // Remove — removes by key
+        dict.Remove("Bob");
+        Console.WriteLine($"After Remove: {dict.Count}");
     }
 
-    // ---- HASHSET<T> — unikali aibė (be pasikartojančių) ----
+    // ---- HASHSET<T> — unique set (no duplicates) ----
     static void DemoHashSet()
     {
         Console.WriteLine("\n-- HashSet<T> --");
 
-        var aibė = new HashSet<int>();
+        var set = new HashSet<int>();
 
-        // Add — jei jau yra, nieko nevyksta (nemetama klaida)
-        aibė.Add(1);
-        aibė.Add(2);
-        aibė.Add(3);
-        aibė.Add(3);  // dublikatas — ignoruojamas
-        Console.WriteLine($"Count (su dublikatu 3): {aibė.Count}");  // 3, ne 4!
+        // Add — if already present, nothing happens (no exception)
+        set.Add(1);
+        set.Add(2);
+        set.Add(3);
+        set.Add(3);  // duplicate — silently ignored
+        Console.WriteLine($"Count (with duplicate 3): {set.Count}");  // 3, not 4!
 
         // Contains
-        Console.WriteLine($"Contains(2): {aibė.Contains(2)}");
+        Console.WriteLine($"Contains(2): {set.Contains(2)}");
 
         // Remove
-        aibė.Remove(1);
-        Console.WriteLine($"Po Remove(1): {aibė.Count}");
+        set.Remove(1);
+        Console.WriteLine($"After Remove(1): {set.Count}");
 
-        // Aibių operacijos
-        var aibė2 = new HashSet<int> { 3, 4, 5 };
+        // Set operations
+        var set2 = new HashSet<int> { 3, 4, 5 };
 
-        var sąjunga = new HashSet<int>(aibė);
-        sąjunga.UnionWith(aibė2);          // {2, 3, 4, 5} — visi elementai
+        var union = new HashSet<int>(set);
+        union.UnionWith(set2);          // {2, 3, 4, 5} — all elements
         Console.Write("UnionWith: ");
-        foreach (int el in sąjunga) Console.Write(el + " ");
+        foreach (int el in union) Console.Write(el + " ");
         Console.WriteLine();
 
-        var sankirta = new HashSet<int>(aibė);
-        sankirta.IntersectWith(aibė2);     // bendri elementai
+        var intersect = new HashSet<int>(set);
+        intersect.IntersectWith(set2);  // elements in both sets
         Console.Write("IntersectWith: ");
-        foreach (int el in sankirta) Console.Write(el + " ");  // {3}
+        foreach (int el in intersect) Console.Write(el + " ");  // {3}
         Console.WriteLine();
 
-        var skirtumas = new HashSet<int>(aibė);
-        skirtumas.ExceptWith(aibė2);       // aibė be aibė2 elementų
+        var except = new HashSet<int>(set);
+        except.ExceptWith(set2);        // set minus set2 elements
         Console.Write("ExceptWith: ");
-        foreach (int el in skirtumas) Console.Write(el + " "); // {2}
+        foreach (int el in except) Console.Write(el + " ");  // {2}
         Console.WriteLine();
     }
 
-    // ---- FAILŲ OPERACIJOS ----
-    static void DemoFailai()
+    // ---- FILE OPERATIONS ----
+    static void DemoFiles()
     {
-        Console.WriteLine("\n-- Failai --");
+        Console.WriteLine("\n-- Files --");
 
-        string kelias = "testas.txt";
+        string path = "test.txt";
 
-        // ---- Rašymas ----
+        // ---- Writing ----
 
-        // WriteAllText — perrašo arba sukuria failą
-        File.WriteAllText(kelias, "Pirma eilutė\n");
-        Console.WriteLine("WriteAllText: parašyta.");
+        // WriteAllText — overwrites or creates the file
+        File.WriteAllText(path, "First line\n");
+        Console.WriteLine("WriteAllText: written.");
 
-        // AppendAllText — prideda prie esamo turinio
-        File.AppendAllText(kelias, "Antra eilutė\n");
-        File.AppendAllText(kelias, "Trečia eilutė\n");
-        Console.WriteLine("AppendAllText: pridėta.");
+        // AppendAllText — adds to existing content
+        File.AppendAllText(path, "Second line\n");
+        File.AppendAllText(path, "Third line\n");
+        Console.WriteLine("AppendAllText: appended.");
 
-        // WriteAllLines — rašo eilučių masyvą
-        string[] eilutės = { "Ketvirta", "Penkta" };
-        File.AppendAllLines(kelias, eilutės);
-        Console.WriteLine("AppendAllLines: pridėtos eilutės.");
+        // AppendAllLines — writes an array of lines
+        string[] lines = { "Fourth", "Fifth" };
+        File.AppendAllLines(path, lines);
+        Console.WriteLine("AppendAllLines: lines appended.");
 
-        // ---- Skaitymas ----
+        // ---- Reading ----
 
-        // Tikrinti ar failas egzistuoja PRIEŠ skaitant
-        if (!File.Exists(kelias))
+        // Always check if the file exists BEFORE reading
+        if (!File.Exists(path))
         {
-            Console.WriteLine("Failas nerastas!");
+            Console.WriteLine("File not found!");
             return;
         }
 
-        // ReadAllText — visas tekstas kaip viena eilutė
-        string visas = File.ReadAllText(kelias);
-        Console.WriteLine($"\nReadAllText:\n{visas}");
+        // ReadAllText — entire content as one string
+        string allText = File.ReadAllText(path);
+        Console.WriteLine($"\nReadAllText:\n{allText}");
 
-        // ReadAllLines — masyvas eilučių
-        string[] skaitytosEilutės = File.ReadAllLines(kelias);
-        Console.WriteLine($"ReadAllLines — eilučių skaičius: {skaitytosEilutės.Length}");
+        // ReadAllLines — array of lines
+        string[] readLines = File.ReadAllLines(path);
+        Console.WriteLine($"ReadAllLines — line count: {readLines.Length}");
 
-        // ---- StreamWriter / StreamReader (dideliems failams) ----
+        // ---- StreamWriter / StreamReader (for large files) ----
 
-        string stream_kelias = "stream_testas.txt";
+        string streamPath = "stream_test.txt";
 
-        // StreamWriter — rašymas per srautą
-        // 'using' garantuoja, kad failas bus uždarytas (net jei įvyksta klaida)
-        using (StreamWriter rašytojas = new StreamWriter(stream_kelias))
+        // StreamWriter — writing via stream
+        // 'using' guarantees the file is closed even if an error occurs
+        using (StreamWriter writer = new StreamWriter(streamPath))
         {
-            rašytojas.WriteLine("StreamWriter 1 eilutė");
-            rašytojas.WriteLine("StreamWriter 2 eilutė");
-        }  // čia automatiškai Close() + Dispose()
-        Console.WriteLine("StreamWriter: parašyta.");
+            writer.WriteLine("StreamWriter line 1");
+            writer.WriteLine("StreamWriter line 2");
+        }  // automatically calls Close() + Dispose() here
+        Console.WriteLine("StreamWriter: written.");
 
-        // StreamReader — skaitymas eilutė po eilutės
-        if (File.Exists(stream_kelias))
+        // StreamReader — reading line by line
+        if (File.Exists(streamPath))
         {
-            using (StreamReader skaitojas = new StreamReader(stream_kelias))
+            using (StreamReader reader = new StreamReader(streamPath))
             {
-                Console.WriteLine("StreamReader skaitymas:");
-                string? eilutė = skaitojas.ReadLine();  // null jei EOF
-                while (eilutė != null)
+                Console.WriteLine("StreamReader output:");
+                string? line = reader.ReadLine();  // returns null at end of file
+                while (line != null)
                 {
-                    Console.WriteLine($"  → {eilutė}");
-                    eilutė = skaitojas.ReadLine();
+                    Console.WriteLine($"  → {line}");
+                    line = reader.ReadLine();
                 }
-            }  // čia automatiškai uždaro failą
+            }  // file is automatically closed here
         }
 
-        // ---- Valymas — ištriname test failus ----
-        if (File.Exists(kelias)) File.Delete(kelias);
-        if (File.Exists(stream_kelias)) File.Delete(stream_kelias);
-        Console.WriteLine("Testų failai ištrinti.");
+        // ---- Cleanup — delete test files ----
+        if (File.Exists(path)) File.Delete(path);
+        if (File.Exists(streamPath)) File.Delete(streamPath);
+        Console.WriteLine("Test files deleted.");
     }
 }
 
 // ============================================================
-// GREITA SANTRAUKA — KĄ ATSIMINTI
+// QUICK SUMMARY — KEY THINGS TO REMEMBER
 // ============================================================
 //
-//  #1 ĮVADAS
+//  #1 INTRODUCTION
 //     • value type (stack): int, double, bool, char
-//     • reference type (heap): string, object, masyvai, klasės
-//     • var — automatinis tipas (statinis), const — kompiliacijos laiku
-//     • int/int = int (10/3 = 3!), naudok double jei reikia tikslaus
+//     • reference type (heap): string, object, arrays, classes
+//     • var — inferred type (still static), const — compile-time constant
+//     • int/int = int (10/3 = 3!), use double if you need decimals
 //
-//  #2 CIKLAI / MASYVAI / METODAI
-//     • do-while — bent 1 kartą, nes sąlyga PO vykdymo
-//     • break — išeiti iš ciklo, continue — praleisti iteraciją
-//     • masyvas: fiksuotas dydis, .Length
-//     • ref — kintamasis TURI būti inicializuotas prieš perduodant
-//     • out — NEREIKIA inicializuoti, bet metodas PRIVALO priskirti
-//     • overloading — tas pats pavadinimas, skirtingi parametrai
+//  #2 LOOPS / ARRAYS / METHODS
+//     • do-while — runs at least once, condition checked AFTER body
+//     • break — exit loop, continue — skip current iteration
+//     • array: fixed size, use .Length
+//     • ref — variable MUST be initialized before passing
+//     • out — no init needed, but method MUST assign a value
+//     • overloading — same name, different parameter types/count
 //
-//  #3 STRING / COLLECTIONS
-//     • string yra IMMUTABLE — kiekviena operacija = naujas objektas
-//     • StringBuilder — naudok kai daug jungimo operacijų cikle
-//     • List<T> — dinaminis dydis, Add/Remove/Sort/Contains/.Count
-//     • VISADA tikrink Count > 0 prieš prieigą per indeksą
+//  #3 STRINGS / COLLECTIONS
+//     • string is IMMUTABLE — every operation creates a new object
+//     • StringBuilder — use when doing many concatenations in a loop
+//     • List<T> — dynamic size, Add/Remove/Sort/Contains/.Count
+//     • ALWAYS check Count > 0 before accessing by index
 //
-//  #4 QUEUE / STACK / DICTIONARY / HASHSET / FAILAI
-//     • Queue  — FIFO: Enqueue (galą) → Dequeue (priekį)
-//     • Stack  — LIFO: Push (viršų)  → Pop (viršų)
-//     • Dictionary — unikalūs raktai; naudok TryGetValue saugiam gavimui
-//     • HashSet — unikalios reikšmės; UnionWith / IntersectWith / ExceptWith
-//     • File.WriteAllText — perrašo; AppendAllText — prideda
-//     • using (StreamWriter/Reader) — garantuoja failo uždarymą
-//     • VISADA tikrink File.Exists() prieš skaitant
+//  #4 QUEUE / STACK / DICTIONARY / HASHSET / FILES
+//     • Queue  — FIFO: Enqueue (back) → Dequeue (front)
+//     • Stack  — LIFO: Push (top)     → Pop (top)
+//     • Dictionary — unique keys; use TryGetValue for safe access
+//     • HashSet — unique values only; UnionWith / IntersectWith / ExceptWith
+//     • File.WriteAllText — overwrites; AppendAllText — adds to file
+//     • using (StreamWriter/Reader) — guarantees the file is closed
+//     • ALWAYS check File.Exists() before reading
 // ============================================================
